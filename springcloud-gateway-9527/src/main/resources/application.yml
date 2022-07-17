@@ -1,0 +1,23 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: springcloud-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: dept_routh
+          #uri: http://localhost:8001
+          uri: lb://SPRINGCLOUD-DEPT
+          predicates:
+            - Path=/dept/**
+#      discovery:
+#        locator:
+#          enabled: true  #开启从注册中心获取动态路由的功能
+eureka: #Eureka的相关的配置信息
+  client:
+    serviceUrl:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    instance-id: springcloud-gateway9527
+    prefer-ip-address: true
